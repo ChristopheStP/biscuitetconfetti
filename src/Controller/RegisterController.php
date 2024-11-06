@@ -25,6 +25,7 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
+
             $this->addFlash(
                 type:'success', 
                 message:'Votre compte a bien été créé, veuillez vous connecter.'
