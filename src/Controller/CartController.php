@@ -28,8 +28,8 @@ class CartController extends AbstractController
         $cart->add($product);
 
         $this->addFlash(
-            type:'success',
-            message:'Produit correctement ajouté à votre panier.'
+            type: 'success',
+            message: 'Produit correctement ajouté à votre panier.'
         );
 
         return $this->redirect($request->headers->get('referer'));
@@ -41,8 +41,8 @@ class CartController extends AbstractController
         $cart->decrease($id);
 
         $this->addFlash(
-            type:'success',
-            message:'Produit correctement supprimé de votre panier.'
+            type: 'success',
+            message: 'Produit correctement supprimé de votre panier.'
         );
 
         return $this->redirectToRoute('app_cart');
