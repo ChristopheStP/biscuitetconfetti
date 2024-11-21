@@ -86,6 +86,7 @@ class OrderController extends AbstractController
                 $orderDetail->setProductTva($product['object']->getTva());
                 $orderDetail->setProductQuantity($product['qty']);
                 $order->addOrderDetail($orderDetail);
+                $orderDetail->setMyOrder($order); // Ajout de cette ligne pour associer correctement les détails de la commande
             }
 
             $entityManager->persist($order);
@@ -96,6 +97,7 @@ class OrderController extends AbstractController
         return $this->render('order/summary.html.twig', [
             'choices' => $form->getData(),
             'cart' => $products,
+            'order' => $order,
             'totalWt' => $cart->getTotalWt(),
         ]);
     }
