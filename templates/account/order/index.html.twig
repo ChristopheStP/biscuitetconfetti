@@ -10,7 +10,8 @@
 
             <div class="col-md-9">
                 <small><a href="{{ path('app_account') }}" class="btn btn-light btn-sm">Retour</a>
-                    <a target="_blank" href="{{ path('app_invoice_customer', {id_order : order.id}) }}" class="btn btn-light btn-sm">Ma facture</a></small>
+                    <a target="_blank" href="{{ path('app_invoice_customer', {id_order : order.id}) }}"
+                       class="btn btn-light btn-sm">Ma facture</a></small>
 
                 <h5 class="mt-4">Ma commande n°{{ order.id }}</h5>
                 <span>Passée le : {{ order.createdAt| date('d/m/Y') }}</span><br>
@@ -48,13 +49,14 @@
                         {% for product in order.orderDetails %}
                             <tr>
                                 <td>
-                                    <img src="/uploads/{{ product.productIllustration }}" alt="{{ product.productName }}" style="width: 100px">
+                                    <img src="/uploads/{{ product.productIllustration }}"
+                                         alt="{{ product.productName }}" style="width: 100px">
                                 </td>
                                 <td>{{ product.productName }}</td>
                                 <td>{{ product.productQuantity }}</td>
                                 <td>{{ product.productPrice|price }}</td>
                                 <td>{{ product.productTva }}%</td>
-                                {% set coeff = 1 + (product.productTva / 100)  %}
+                                {% set coeff = 1 + (product.productTva / 100) %}
 
                                 <td>{{ ((product.productPrice * coeff) * product.productQuantity )|price }}</td>
                             </tr>
@@ -75,8 +77,8 @@
                         <strong>Total TVA :</strong> {{ order.totalTva|price }}<br>
                         <strong>Total T.T.C :</strong> {{ order.totalWt|price }}
                     </div>
+                </div>
             </div>
         </div>
-
     </div>
 {% endblock %}
