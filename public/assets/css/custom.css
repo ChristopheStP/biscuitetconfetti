@@ -118,3 +118,10 @@
     background-color: #cff3e5;
     color: #095838;
 }
+
+.small-bloc {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fafafa;
+    padding: 20px;
+}
