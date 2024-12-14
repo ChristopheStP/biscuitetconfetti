@@ -40,9 +40,11 @@
                             <th scope="col">Illustration</th>
                             <th scope="col">Nom du produit</th>
                             <th scope="col">Quantité</th>
-                            <th scope="col">Prix unitaire H.T</th>
-                            <th scope="col">TVA</th>
-                            <th scope="col">Total T.T.C</th>
+                            {# <th scope="col">Prix unitaire H.T</th> #}
+                            <th scope="col">Prix unitaire</th>
+                            {# <th scope="col">TVA</th> #}
+                            {# <th scope="col">Total T.T.C</th> #}
+                            <th scope="col">Total</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,10 +57,11 @@
                                 <td>{{ product.productName }}</td>
                                 <td>{{ product.productQuantity }}</td>
                                 <td>{{ product.productPrice|price }}</td>
-                                <td>{{ product.productTva }}%</td>
-                                {% set coeff = 1 + (product.productTva / 100) %}
+                                {# <td>{{ product.productTva }}%</td> #}
+                                {# {% set coeff = 1 + (product.productTva / 100) %} #}
 
-                                <td>{{ ((product.productPrice * coeff) * product.productQuantity )|price }}</td>
+                                {# <td>{{ ((product.productPrice * coeff) * product.productQuantity )|price }}</td> #}
+                                <td>{{ (product.productPrice * product.productQuantity )|price }}</td>
                             </tr>
                         {% endfor %}
                         <tr>
@@ -73,9 +76,10 @@
                     </table>
 
                     <div>
-                        <strong>Total H.T :</strong> {{ (order.totalWt - order.totalTva)|price }}<br>
-                        <strong>Total TVA :</strong> {{ order.totalTva|price }}<br>
-                        <strong>Total T.T.C :</strong> {{ order.totalWt|price }}
+                        {# <strong>Total H.T :</strong> {{ (order.totalWt - order.totalTva)|price }}<br>
+                        <strong>Total TVA :</strong> {{ order.totalTva|price }}<br> #}
+                        {# <strong>Total T.T.C :</strong> {{ order.totalWt|price }} #}
+                        <strong>Total :</strong> {{ order.totalWt|price }}
                     </div>
                 </div>
             </div>

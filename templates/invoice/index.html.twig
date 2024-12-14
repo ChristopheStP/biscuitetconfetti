@@ -38,8 +38,8 @@
         <tr>
             <td style="width: 49%;">
                 <strong>Biscuit et confetti</strong><br>
-                mon adresse,<br>
-                code postal, ville. France.<br>
+                3 lotissement les Cedres,<br>
+                82100, Castelsarrasin. France.<br>
                 email@biscuitetconfetti.com<br>
                 06 06 06 06 06
             </td>
@@ -55,9 +55,10 @@
     <tr>
         <th scope="col" class="text-left">Produit</th>
         <th scope="col" class="text-left">Quantité</th>
-        <th scope="col" class="text-left">Prix unitaire H.T</th>
-        <th scope="col" class="text-left">TVA</th>
-        <th scope="col" class="text-right">Total T.T.C</th>
+        <th scope="col" class="text-left">Prix unitaire</th>
+        {# <th scope="col" class="text-left">TVA</th> #}
+        {# <th scope="col" class="text-right">Total T.T.C</th> #}
+        <th scope="col" class="text-right">Total</th>
     </tr>
     </thead>
     <tbody>
@@ -66,26 +67,27 @@
             <td>{{ product.productName }}</td>
             <td>{{ product.productQuantity }}</td>
             <td>{{ product.productPrice|price }}</td>
-            <td>{{ product.productTva }}%</td>
-            {% set coeff = 1 + (product.productTva / 100)  %}
-
-            <td class="text-right">{{ ((product.productPrice * coeff) * product.productQuantity )|price }}</td>
+            {# <td>{{ product.productTva }}%</td> #}
+            {# {% set coeff = 1 + (product.productTva / 100)  %}
+        <td class="text-right">{{ ((product.productPrice * coeff) * product.productQuantity )|price }}</td> #}
+        <td class="text-right">{{ (product.productPrice * product.productQuantity )|price }}</td>
         </tr>
     {% endfor %}
     <tr>
         <td>{{ order.carrierName }}</td>
         <td>1</td>
         <td></td>
-        <td></td>
+        {# <td></td> #}
         <td class="text-right">{{ order.carrierPrice|price }}</td>
     </tr>
     </tbody>
 </table>
 
 <div class="text-right" style="margin-top: 10px;">
-    <strong>Total H.T :</strong> {{ (order.totalWt - order.totalTva)|price }}<br>
+    <strong>Total :</strong> {{ order.totalWt|price }}<br>
+    {# <strong>Total H.T :</strong> {{ (order.totalWt - order.totalTva)|price }}<br>
     <strong>Total TVA :</strong> {{ order.totalTva|price }}<br>
-    <strong>Total T.T.C :</strong> {{ order.totalWt|price }}
+    <strong>Total T.T.C :</strong> {{ order.totalWt|price }} #}
 </div>
 </body>
 </html>

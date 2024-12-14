@@ -35,7 +35,8 @@ class PaymentController extends AbstractController
             $products_for_stripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => number_format($product->getProductPriceWt() * 100, 0, '', ''),
+                    // 'unit_amount' => number_format($product->getProductPriceWt() * 100, 0, '', ''),
+                    'unit_amount' => number_format($product->getProductPrice() * 100, 0, '', ''),
                     'product_data' => [
                         'name' => $product->getProductName(),
                         'images' => [

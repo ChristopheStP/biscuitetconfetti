@@ -51,15 +51,15 @@ class ProductCrudController extends AbstractCrudController
             NumberField::new('price')->setLabel('Prix H.T')->setHelp('Prix H.T du produit sans le sigle €'),
         ];
 
-        if (Crud::PAGE_INDEX === $pageName || Crud::PAGE_DETAIL === $pageName) {
-            $fields[] = NumberField::new('tva')->setLabel('Taux de TVA');
-        } else {
-            $fields[] = ChoiceField::new('tva')->setLabel('Taux de TVA')->setChoices([
-                '5.5%' => 5.5,
-                '10%' => 10.0,
-                '20%' => 20.0
-            ]);
-        }
+        //if (Crud::PAGE_INDEX === $pageName || Crud::PAGE_DETAIL === $pageName) {
+        //   $fields[] = NumberField::new('tva')->setLabel('Taux de TVA');
+        //} else {
+        //   $fields[] = ChoiceField::new('tva')->setLabel('Taux de TVA')->setChoices([
+        //       '5.5%' => 5.5,
+        //       '10%' => 10.0,
+        //       '20%' => 20.0
+        //   ]);
+        //}
 
         $fields[] = AssociationField::new('category', 'Catégorie associée');
 
