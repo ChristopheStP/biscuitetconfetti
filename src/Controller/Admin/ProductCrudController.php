@@ -36,6 +36,7 @@ class ProductCrudController extends AbstractCrudController
         if ($pageName == 'edit') {
             $required = false;
         }
+        
         $fields = [
             TextField::new('name')->setLabel('Nom')->setHelp('Nom de votre produit'),
             BooleanField::new('isHomepage')->setLabel('Produit à la une')->setHelp('Vous permet d\'afficher un produit sur la page d\'accueil'),

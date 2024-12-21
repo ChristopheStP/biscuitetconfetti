@@ -3,12 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Body;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BodyCrudController extends AbstractCrudController
 {
@@ -16,7 +16,6 @@ class BodyCrudController extends AbstractCrudController
     {
         return Body::class;
     }
-
     
     public function configureFields(string $pageName): iterable
     {
@@ -27,7 +26,7 @@ class BodyCrudController extends AbstractCrudController
 
         return [
             TextField::new('title', 'title'),
-            TextareaField::new('content', 'content'),
+            TextEditorField::new('content', 'content'),
             ImageField::new('illustration')
                 ->setLabel('Image de fond du body')
                 ->setHelp('Image de fond du body en JPEG')
@@ -37,5 +36,12 @@ class BodyCrudController extends AbstractCrudController
                 ->setRequired($required),
         ];
     }
-    
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Gestion du body')
+            ->setPageTitle('new', 'Créer un body')
+            ->setPageTitle('edit', 'Modifier un body');
+    }
 }

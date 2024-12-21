@@ -53,7 +53,7 @@
     overflow-x: auto;
     text-align: center;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+    /*-webkit-overflow-scrolling: touch;*/
 }
 
 .btn-bd-primary {
@@ -124,4 +124,29 @@
     margin: 0 auto;
     background-color: #fafafa;
     padding: 20px;
+}
+
+/*-- Carousel --*/
+
+#myCarousel {
+    height: 400px; 
+}
+#myCarousel .carousel-inner, 
+#myCarousel .carousel-item {
+    height: 100%;
+}
+#myCarousel img {
+    object-fit: cover;
+    height: 100%;
+}
+
+/*-- Fin Carousel --*/
+
+/* featurette dans home */
+.text {
+    width: 100%;
+}
+
+.lead {
+    width: 100%;
 }

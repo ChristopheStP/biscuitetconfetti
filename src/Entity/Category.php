@@ -27,6 +27,12 @@ class Category
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'category')]
     private Collection $products;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $illustration = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isHomepage = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -92,6 +98,30 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(?string $illustration): static
+    {
+        $this->illustration = $illustration;
+
+        return $this;
+    }
+
+    public function isIsHomepage(): ?bool
+    {
+        return $this->isHomepage;
+    }
+
+    public function setIsHomepage(?bool $isHomepage): static
+    {
+        $this->isHomepage = $isHomepage;
 
         return $this;
     }
