@@ -16,6 +16,15 @@ class BodyCrudController extends AbstractCrudController
     {
         return Body::class;
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setFormThemes(['@EasyAdmin/crud/form_theme.html.twig'])
+            ->setPageTitle('index', 'Gestion du body')
+            ->setPageTitle('new', 'Créer un body')
+            ->setPageTitle('edit', 'Modifier un body');
+    }
     
     public function configureFields(string $pageName): iterable
     {
@@ -25,8 +34,16 @@ class BodyCrudController extends AbstractCrudController
         }
 
         return [
-            TextField::new('title', 'title'),
-            TextEditorField::new('content', 'content'),
+            TextField::new('title', 'titre'),
+            TextAreaField::new('content', 'Contenu')
+                ->setFormTypeOptions([
+                    'attr' => [
+                        'class' => 'ckeditor',
+                        'rows' => '10'
+                    ],
+                    'required' => true
+                ])
+                ->addCssClass('ckeditor-field'),
             ImageField::new('illustration')
                 ->setLabel('Image de fond du body')
                 ->setHelp('Image de fond du body en JPEG')
@@ -37,11 +54,5 @@ class BodyCrudController extends AbstractCrudController
         ];
     }
 
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setPageTitle('index', 'Gestion du body')
-            ->setPageTitle('new', 'Créer un body')
-            ->setPageTitle('edit', 'Modifier un body');
-    }
+    
 }

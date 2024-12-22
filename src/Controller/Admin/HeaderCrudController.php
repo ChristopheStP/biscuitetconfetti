@@ -27,7 +27,15 @@ class HeaderCrudController extends AbstractCrudController
 
         return [
             TextField::new('title', 'Titre'),
-            TextareaField::new('content', 'Contenu'),
+            TextAreaField::new('content', 'Contenu')
+                ->setFormTypeOptions([
+                    'attr' => [
+                        'class' => 'ckeditor',
+                        'rows' => '10'
+                    ],
+                    'required' => true
+                ])
+                ->addCssClass('ckeditor-field'),
             TextField::new('buttonTitle', 'Titre du bouton'),
             TextField::new('buttonLink', 'URL du bouton'),
             ImageField::new('illustration')

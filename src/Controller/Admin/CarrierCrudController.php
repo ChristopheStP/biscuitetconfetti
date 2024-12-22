@@ -31,7 +31,16 @@ class CarrierCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name')->setLabel('Nom du transporteur'),
-            TextareaField::new('description')->setLabel('Description du transporteur'),
+            TextAreaField::new('description')
+            ->setLabel('Description du transporteur')
+                ->setFormTypeOptions([
+                    'attr' => [
+                        'class' => 'ckeditor',
+                        'rows' => '10'
+                    ],
+                    'required' => true
+                ])
+                ->addCssClass('ckeditor-field'),
             NumberField::new('price')->setLabel('Prix T.T.C')->setHelp('Prix T.T.C du transporteur sans le sigle €'),
         ];
     }

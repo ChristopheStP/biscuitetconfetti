@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -41,7 +42,17 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name')->setLabel('Nom')->setHelp('Nom de votre produit'),
             BooleanField::new('isHomepage')->setLabel('Produit à la une')->setHelp('Vous permet d\'afficher un produit sur la page d\'accueil'),
             SlugField::new('slug')->setTargetFieldName('name')->setLabel('URL')->setHelp('URL de votre catégorie générée automatiquement'),
-            TextEditorField::new('description')->setLabel('Description')->setHelp('Description de votre produit'),
+            TextareaField::new('description')
+                ->setLabel('Description')
+                ->setHelp('Description de votre produit')
+                ->setFormTypeOptions([
+                    'attr' => [
+                        'class' => 'ckeditor',
+                        'rows' => '10'
+                    ],
+                    'required' => true
+                ])
+                ->addCssClass('ckeditor-field'),
             ImageField::new('illustration')
                 ->setLabel('Image')
                 ->setHelp('Image du produit en 600x600px')
