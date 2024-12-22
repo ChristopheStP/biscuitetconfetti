@@ -1,6 +1,10 @@
 twig:
     file_name_pattern: '*.twig'
-    form_themes: ['bootstrap_5_layout.html.twig']
+    form_themes: 
+        - 'bootstrap_5_layout.html.twig'
+        - '@EasyAdmin/crud/form_theme.html.twig'
+    paths:
+        '%kernel.project_dir%/public/assets': assets
 
 when@test:
     twig:

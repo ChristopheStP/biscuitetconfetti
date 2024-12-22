@@ -15,5 +15,8 @@
     "core-js": "^3.33.0",
     "regenerator-runtime": "^0.13.9",
     "webpack-notifier": "^1.15.0"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^44.1.0"
   }
 }
