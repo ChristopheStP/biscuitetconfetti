@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% if headers|length > 1 %}
+                {% for key,header in headers %}
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ key }}" {% if key == 0 %}class="active" aria-current="true"{% endif %} aria-label="{{ header.title }}"></button>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="carousel-inner">
+            {% for key,header in headers %}
+            <div class="carousel-item {% if key == 0 %}active{% endif %}">
+                <img src="/uploads/{{ header.illustration }}" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></img>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>{{ header.title }}</h1>
+                        <p class="opacity-75">{{ header.content }}</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if headers|length > 1 %}
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        {% endif %}
+    </div>
+
+    <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+        {% for key,body in bodies %}
+        <div class="container row featurette m-auto">
+            <div class="text col-md-7 {% if key == 1 %}order-md-2{% endif %} m-auto">
+                <h2 class="fw-normal lh-1 text-center">{{ body.title }}</h2><br>
+                <p class="lead text-center">{{ body.content | raw }}</p>
+            </div>
+            {# <div class="col-md-5 {% if key == 1 %}order-md-1{% endif %}">
+                <img src="/uploads/{{ body.illustration }}" class="img-fluid" width="500" height="500">
+            </div> #}
+        </div>
+
+        <hr class="featurette-divider">
+        {% endfor %}
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+        <!-- Produits mis à la une -->
+        <div class="row">
+            {% for product in productsInHomepage %}
+            <div class="col-lg-4">
+                <img src="/uploads/{{ product.illustration }}" class="img-fluid">
+                <h2 class="fw-normal mt-2">{{ product.name }}</h2>
+                <div style="font-size: 14px;">
+                {{ product.description|raw }}
+                </div>
+                <p><a class="btn btn-secondary mt-2" href="{{ path('app_product', {slug : product.slug }) }}">Découvrir</a></p>
+            </div><!-- /.col-lg-4 -->
+            {% endfor %}
+        </div><!-- /.row -->
+
+        {# Collections/catégories misent à la une #}
+        <div class="row">
+            {% for category in categoriesInHomepage %}
+            <div class="col-lg-4">
+                <img src="/uploads/{{ category.illustration }}" class="img-fluid">
+                <h2 class="fw-normal mt-2">{{ category.name }}</h2>
+                <p><a class="btn btn-secondary mt-2" href="{{ path('app_category', {slug : category.slug }) }}">Découvrir</a></p>
+            </div><!-- /.col-lg-4 -->
+            {% endfor %}
+        </div><!-- /.row -->
+
+        {# <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
+                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"> #}
+
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+{% endblock %}
+
