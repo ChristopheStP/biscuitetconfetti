@@ -17,7 +17,7 @@
                 <div class="container">
                     <div class="carousel-caption text-start">
                         <h1>{{ header.title }}</h1>
-                        <p class="opacity-75">{{ header.content }}</p>
+                        <p class="opacity-75">{{ header.content|raw }}</p>
                         <p><a class="btn btn-lg btn-primary" href="{{ header.buttonLink }}">{{ header.buttonTitle }}</a></p>
                     </div>
                 </div>
