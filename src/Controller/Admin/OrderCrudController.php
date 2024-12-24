@@ -100,7 +100,7 @@ class OrderCrudController extends AbstractCrudController
             NumberField::new('state')->setLabel('Statut')->setTemplatePath('admin/state.html.twig'),
             AssociationField::new('user')->setLabel('Utilisateur'),
             TextField::new('carrierName')->setLabel('Transporteur'),
-            NumberField::new('totalTva')->setLabel('Total TVA'),
+            // NumberField::new('totalTva')->setLabel('Total TVA'),
             NumberField::new('totalWt')->setLabel('Total TTC'),
         ];
     }
