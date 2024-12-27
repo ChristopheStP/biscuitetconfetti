@@ -22,7 +22,7 @@ class HeaderCrudController extends AbstractCrudController
     {
         $required = true;
         if ($pageName == 'edit') {
-            $required = false;
+            $required = true;
         }
 
         return [

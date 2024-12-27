@@ -38,20 +38,26 @@
 
     <!-- START THE FEATURETTES -->
 
-        <hr class="featurette-divider">
-        {% for key,body in bodies %}
+        {# <hr class="featurette-divider"> #}
+        {# {% for key,body in bodies %}
         <div class="container row featurette m-auto">
             <div class="text col-md-7 {% if key == 1 %}order-md-2{% endif %} m-auto">
                 <h2 class="fw-normal lh-1 text-center">{{ body.title }}</h2><br>
                 <p class="lead text-center">{{ body.content | raw }}</p>
             </div>
-            {# <div class="col-md-5 {% if key == 1 %}order-md-1{% endif %}">
+            <div class="col-md-5 {% if key == 1 %}order-md-1{% endif %}">
                 <img src="/uploads/{{ body.illustration }}" class="img-fluid" width="500" height="500">
-            </div> #}
+            </div>
         </div>
 
         <hr class="featurette-divider">
-        {% endfor %}
+        {% endfor %} #}
+
+        
+
+        {# <hr class="featurette-divider"> #}
+
+        
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -59,8 +65,15 @@
 
     <div class="container marketing">
 
+    <div class="container row featurette m-auto">
+            <div class="text col-md-7">
+                <h2 class="fw-normal lh-1 text-center">{{ firstBody.title }}</h2><br>
+                <p class="lead text-center">{{ firstBody.content | raw }}</p>
+            </div>
+        </div>
+
         <!-- Produits mis à la une -->
-        <div class="row">
+        <div class="row mt-5">
             {% for product in productsInHomepage %}
             <div class="col-lg-4">
                 <img src="/uploads/{{ product.illustration }}" class="img-fluid">
@@ -83,6 +96,20 @@
             </div><!-- /.col-lg-4 -->
             {% endfor %}
         </div><!-- /.row -->
+
+        {# <hr class="featurette-divider"> #}
+        
+        <div class="container row d-flex flex-column justify-content-center align-items-center my-5">
+            <div class="col-md-5 text-center mb-4">
+                <img src="/uploads/{{ secondBody.illustration }}" class="img-fluid rounded-circle" width="300" height="300">
+            </div>
+            <div class="text col-md-7 m-auto">
+                <h2 class="fw-normal lh-1 text-center">{{ secondBody.title }}</h2><br>
+                <p class="lead text-center">{{ secondBody.content | raw }}</p>
+            </div>
+        </div>
+
+        {# <hr class="featurette-divider"> #}
 
         {# <div class="row featurette">
             <div class="col-md-7 order-md-2">

@@ -38,7 +38,7 @@ class CarrierCrudController extends AbstractCrudController
                         'class' => 'ckeditor',
                         'rows' => '10'
                     ],
-                    'required' => true
+                    'required' => false
                 ])
                 ->addCssClass('ckeditor-field'),
             NumberField::new('price')->setLabel('Prix T.T.C')->setHelp('Prix T.T.C du transporteur sans le sigle €'),

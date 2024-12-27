@@ -20,7 +20,7 @@ class BodyCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        $required = true;
+        $required = false;
         if ($pageName == 'edit') {
             $required = false;
         }
@@ -33,7 +33,7 @@ class BodyCrudController extends AbstractCrudController
                         'class' => 'ckeditor',
                         'rows' => '10'
                     ],
-                    'required' => true
+                    'required' => false
                 ])
                 ->addCssClass('ckeditor-field'),
             ImageField::new('illustration')

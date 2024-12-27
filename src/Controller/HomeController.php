@@ -16,11 +16,15 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(HeaderRepository $headerRepository, ProductRepository $productRepository, CategoryRepository $categoryRepository, BodyRepository $bodyRepository): Response
     {
+        $bodies = $bodyRepository->findAll();
+
         return $this->render('home/index.html.twig', [
             'headers' => $headerRepository->findAll(),
             'productsInHomepage' => $productRepository->findByIsHomepage(true),
             'categoriesInHomepage' => $categoryRepository->findByIsHomepage(true),
             'bodies' => $bodyRepository->findAll(),
+            'firstBody' => $bodies[0],
+            'secondBody' => $bodies[1],
         ]);
     }
 }
