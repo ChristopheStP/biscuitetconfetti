@@ -24,7 +24,7 @@ class Product
     private ?string $description = null;
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
-    private ?array $illustration = [];
+    private ?array $illustration = null;
 
     #[ORM\Column]
     private ?float $price = null;
@@ -92,7 +92,7 @@ class Product
         return is_array($this->illustration) ? reset($this->illustration) : null;
     }
 
-    public function setIllustration(array $illustration): static
+    public function setIllustration(?array $illustration): static
     {
         $this->illustration = $illustration;
 

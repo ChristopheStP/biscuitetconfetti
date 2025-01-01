@@ -19,7 +19,7 @@ class Body
     #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $illustration = null;
 
     public function getId(): ?int
@@ -56,7 +56,7 @@ class Body
         return $this->illustration;
     }
 
-    public function setIllustration(string $illustration): static
+    public function setIllustration(?string $illustration): static
     {
         $this->illustration = $illustration;
 
