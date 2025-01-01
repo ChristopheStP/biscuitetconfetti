@@ -23,8 +23,8 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $illustration = null;
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $illustration = [];
 
     #[ORM\Column]
     private ?float $price = null;
@@ -79,12 +79,20 @@ class Product
         return $this;
     }
 
-    public function getIllustration(): ?string
+    public function getIllustration(): ?array
     {
         return $this->illustration;
     }
 
-    public function setIllustration(string $illustration): static
+    public function getFirstIllustration(): ?string
+    {
+        if (empty($this->illustration)) {
+            return null;
+        }
+        return is_array($this->illustration) ? reset($this->illustration) : null;
+    }
+
+    public function setIllustration(array $illustration): static
     {
         $this->illustration = $illustration;
 

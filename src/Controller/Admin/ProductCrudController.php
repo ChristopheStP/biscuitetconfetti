@@ -58,6 +58,13 @@ class ProductCrudController extends AbstractCrudController
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
                 ->setBasePath('/uploads')
                 ->setUploadDir('public/uploads')
+                ->setFormTypeOptions([
+                    'multiple' => true,
+                    'attr' => [
+                        'accept' => 'image/*',
+                        'multiple' => 'multiple'
+                    ]
+                ])
                 ->setRequired($required),
             NumberField::new('price')->setLabel('Prix H.T')->setHelp('Prix H.T du produit sans le sigle €'),
         ];

@@ -83,7 +83,7 @@ class OrderController extends AbstractController
                 $orderDetail->setProductName($product['object']->getName());
                 $orderDetail->setProductIllustration($product['object']->getIllustration());
                 $orderDetail->setProductPrice($product['object']->getPrice());
-                $orderDetail->setProductTva($product['object']->getTva());
+                $orderDetail->setProductTva((float) $product['object']->getTva());
                 $orderDetail->setProductQuantity($product['qty']);
                 $order->addOrderDetail($orderDetail);
                 $orderDetail->setMyOrder($order); // Ajout de cette ligne pour associer correctement les détails de la commande

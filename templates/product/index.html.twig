@@ -1,45 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container my-5">
+	<div class="container my-5">
 
-        <div class="row">
-            <div class="col-md-6">
-                <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
-            </div>
-            <div class="col-md-6">
-                <small><i><a href="{{ path('app_category', { slug : product.category.slug }) }}">{{ product.category.name }}</a>
-                        > {{ product.name }}</i></small>
-                <h1>{{ product.name }}</h1>
-                {# <span class="d-block mb-3">{{ product.priceWt|price }}</span> #}
-                <span class="d-block mb-3">{{ product.price|price }}</span>
-                {{ product.description|raw }}  {# raw affiche le html #}
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-success w-100">Ajouter au
-                        panier</a>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="myCarousel" class="carousel slide mb-6" style="height: 90%; ">
+					<div class="carousel-indicators">
+						{% if product.illustration|length > 1 %}
+							{% for key,illustration in product.illustration %}
+								<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ key }}" {% if key == 0 %} class="active" aria-current="true" {% endif %} aria-label="{{ illustration }}"></button>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<div class="carousel-inner h-100">
+						{% for key,illustration in product.illustration %}
+							<div class="carousel-item h-100 {% if key == 0 %}active{% endif %}">
+								<img src="/uploads/{{ illustration }}" alt="{{ product.name }}" class="img-fluid" style="object-fit: cover;">
+							</div>
+						{% endfor %}
+						{% if product.illustration|length > 1 %}
+							<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<small>
+					<i>
+						<a href="{{ path('app_category', { slug : product.category.slug }) }}">{{ product.category.name }}</a>
+						>
+						{{ product.name }}</i>
+				</small>
+				<h1>{{ product.name }}</h1>
+				{# <span class="d-block mb-3">{{ product.priceWt|price }}</span> #}
+				<span class="d-block mb-3">{{ product.price|price }}</span>
+				{{ product.description|raw }}
+				{# raw affiche le html #}
+				<div class="d-flex align-items-center justify-content-between mt-3">
+					<a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-success w-100">Ajouter au
+																								                        panier</a>
 
-                    {% if app.user %}
-                        {% if product in app.user.wishlists %}
-                            <a class="ms-3 wishlist-icon wishlist-icon-active"
-                               href="{{ path('app_account_wishlist_remove', { id : product.id }) }}"><i
-                                        data-feather="heart"></i></a>
-                        {% else %}
-                            <a class="ms-3 wishlist-icon"
-                               href="{{ path('app_account_wishlist_add', { id : product.id }) }}"><i
-                                        data-feather="heart"></i></a>
-                        {% endif %}
-                    {% else %}
-                        <a class="ms-3" data-bs-toggle="collapse" href="#collapseExample" role="button"
-                           aria-expanded="false" aria-controls="collapseExample"><i data-feather="heart"></i></a>
-                    {% endif %}
-                </div>
-                <div class="collapse" id="collapseExample">
-                    <div class="mt-2">
-                        Pour utiliser les avantages de la Wishlist, <a href="{{ path('app_login') }}">connectez-vous</a>
-                        ou <a href="{{ path('app_register') }}">créez votre compte</a> client.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					{% if app.user %}
+						{% if product in app.user.wishlists %}
+							<a class="ms-3 wishlist-icon wishlist-icon-active" href="{{ path('app_account_wishlist_remove', { id : product.id }) }}">
+								<i data-feather="heart"></i>
+							</a>
+						{% else %}
+							<a class="ms-3 wishlist-icon" href="{{ path('app_account_wishlist_add', { id : product.id }) }}">
+								<i data-feather="heart"></i>
+							</a>
+						{% endif %}
+					{% else %}
+						<a class="ms-3" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+							<i data-feather="heart"></i>
+						</a>
+					{% endif %}
+				</div>
+				<div class="collapse" id="collapseExample">
+					<div class="mt-2">
+						Pour utiliser les avantages de la Wishlist,
+						<a href="{{ path('app_login') }}">connectez-vous</a>
+						ou
+						<a href="{{ path('app_register') }}">créez votre compte</a>
+						client.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

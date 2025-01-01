@@ -20,6 +20,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/index.html.twig', [
             'product' => $product,
+            'illustrations' => $product->getIllustration(),
         ]);
     }
 }
