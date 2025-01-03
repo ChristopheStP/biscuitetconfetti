@@ -150,3 +150,9 @@
 .lead {
     width: 100%;
 }
+
+@media (max-width: 1399px) {
+    #myCarousel .carousel-control-next {
+        margin-right: 0rem !important;
+    }
+}
