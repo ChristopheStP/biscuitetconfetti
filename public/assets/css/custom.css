@@ -129,7 +129,7 @@
 /*-- Carousel --*/
 
 #myCarousel {
-    height: 400px; 
+    height: 400px;
 }
 #myCarousel .carousel-inner, 
 #myCarousel .carousel-item {
@@ -142,7 +142,7 @@
 
 /*-- Fin Carousel --*/
 
-/* featurette dans home */
+/* feature dans home */
 .text {
     width: 100%;
 }
@@ -153,6 +153,6 @@
 
 @media (max-width: 1399px) {
     #myCarousel .carousel-control-next {
-        margin-right: 0rem !important;
+        margin-right: 0 !important;
     }
 }

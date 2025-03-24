@@ -6,25 +6,29 @@
 
         <div class="row">
             <div class="col-md-8">
-                    {% for product in cart %}
-                <div class="row mt-2">
-                    <div class="col-md-2">
-                        <img src="/uploads/{{ product.object.illustration }}" class="img-fluid" alt="{{ product.object.name }}">
+                {% for product in cart %}
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            {% if product.object.illustration is iterable %}
+                            <img src="/uploads/{{ product.object.illustration[0] }}" class="img-fluid" alt="{{ product.object.name }}">
+                            {% else %}
+                            <img src="/uploads/{{ product.object.illustration }}" class="img-fluid" alt="{{ product.object.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{{ product.object.name }}</strong>
+                            {# <span class="d-block small">Prix unitaire : {{ product.object.pricewt|price }}</span> #}
+                            <span class="d-block small">Prix unitaire : {{ product.object.price|price }}</span>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <a href="{{ path('app_cart_decrease', { id : product.object.id }) }}">-</a> <span class="badge text-bg-secondary mx-1x">x{{ product.qty }}</span> <a href="{{ path('app_cart_add', { id : product.object.id }) }}">+</a>
+                        </div>
+                        <div class="col-md-2">
+                            {# <strong>{{ (product.qty * product.object.pricewt) |price }}</strong> #}
+                            <strong>{{ (product.qty * product.object.price) |price }}</strong>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <strong>{{ product.object.name }}</strong>
-                        {# <span class="d-block small">Prix unitaire : {{ product.object.pricewt|price }}</span> #}
-                        <span class="d-block small">Prix unitaire : {{ product.object.price|price }}</span>
-                    </div>
-                    <div class="col-md-2 text-right">
-                       <a href="{{ path('app_cart_decrease', { id : product.object.id }) }}">-</a> <span class="badge text-bg-secondary mx-1x">x{{ product.qty }}</span> <a href="{{ path('app_cart_add', { id : product.object.id }) }}">+</a>
-                    </div>
-                    <div class="col-md-2">
-                        {# <strong>{{ (product.qty * product.object.pricewt) |price }}</strong> #}
-                        <strong>{{ (product.qty * product.object.price) |price }}</strong>
-                    </div>
-                </div>
-                    {% endfor %}
+                {% endfor %}
                 <a href="{{ path('app_cart_remove') }}" class="small d-block mt-3">Vider le panier</a>
             </div>
 
@@ -49,3 +53,4 @@
 
     </div>
 {% endblock %}
+

@@ -78,7 +78,7 @@ class Cart
      * getTotalWt()
      * Fonction retournant le prix total des produits du panier
      */
-     // public function getTotalWt()
+    // public function getTotalWt()
     // {
     //     $cart = $this->getCart();
     //     $price = 0;

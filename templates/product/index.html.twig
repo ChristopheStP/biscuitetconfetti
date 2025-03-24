@@ -4,34 +4,32 @@
 	<div class="container my-5">
 
 		<div class="row">
-			{# <div class="col-md-6"> #}
-				<div id="myCarousel" class="carousel slide mb-6 mx-auto col-md-6" style="height: 91%;">
-					<div class="carousel-indicators">
-						{% if product.illustration|length > 1 %}
-							{% for key,illustration in product.illustration %}
-								<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ key }}" {% if key == 0 %} class="active bg-info" aria-current="true" {% else %} class="bg-info" {% endif %} aria-label="{{ illustration }}"></button>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="carousel-inner h-100">
+			<div id="myCarousel" class="carousel slide mb-6 mx-auto col-md-6" style="height: 47.3%;">
+				<div class="carousel-indicators">
+					{% if product.illustration|length > 1 %}
 						{% for key,illustration in product.illustration %}
-							<div class="carousel-item h-100 {% if key == 0 %}active{% endif %}">
-								<img src="/uploads/{{ illustration }}" alt="{{ product.name }}" class="img-fluid" style="object-fit: cover;">
-							</div>
+							<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ key }}" {% if key == 0 %} class="active bg-info" aria-current="true" {% else %} class="bg-info" {% endif %} aria-label="{{ illustration }}"></button>
 						{% endfor %}
-						{% if product.illustration|length > 1 %}
-							<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon bg-info rounded-circle" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next me-4" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-								<span class="carousel-control-next-icon bg-info rounded-circle" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
-						{% endif %}
-					</div>
+					{% endif %}
 				</div>
-			{# </div> #}
+				<div class="carousel-inner h-100 w-100">
+					{% for key,illustration in product.illustration %}
+						<div class="carousel-item h-100 {% if key == 0 %}active{% endif %}">
+							<img src="/uploads/{{ illustration }}" alt="{{ product.name }}" class="img-fluid" style="object-fit: cover; height: 100%; width: 100%;">
+						</div>
+					{% endfor %}
+					{% if product.illustration|length > 1 %}
+						<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon bg-info rounded-circle" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+							<span class="carousel-control-next-icon bg-info rounded-circle" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					{% endif %}
+				</div>
+			</div>
 			<div class="col-md-6">
 				<small>
 					<i>
@@ -46,7 +44,7 @@
 				{# raw affiche le html #}
 				<div class="d-flex align-items-center justify-content-between mt-3">
 					<a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-success w-100">Ajouter au
-																								                        panier</a>
+						panier</a>
 
 					{% if app.user %}
 						{% if product in app.user.wishlists %}

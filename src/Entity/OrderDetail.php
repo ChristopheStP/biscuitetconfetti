@@ -66,9 +66,11 @@ class OrderDetail
         return $this->productIllustration;
     }
 
-    public function setProductIllustration(string $productIllustration): static
+    public function setProductIllustration(string|array $productIllustration): static
     {
-        $this->productIllustration = $productIllustration;
+        $this->productIllustration = is_array($productIllustration)
+            ? ($productIllustration[0] ?? '')
+            : $productIllustration;
 
         return $this;
     }

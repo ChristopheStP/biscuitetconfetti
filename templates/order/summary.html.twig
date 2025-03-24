@@ -11,7 +11,11 @@
                 {% for product in cart %}
                     <div class="row mt-2">
                         <div class="col-md-2">
+                            {% if product.object.illustration is iterable %}
+                            <img src="/uploads/{{ product.object.illustration[0] }}" class="img-fluid" alt="{{ product.object.name }}">
+                            {% else %}
                             <img src="/uploads/{{ product.object.illustration }}" class="img-fluid" alt="{{ product.object.name }}">
+                            {% endif %}
                         </div>
                         <div class="col-md-6">
                             <strong>{{ product.object.name }}</strong>

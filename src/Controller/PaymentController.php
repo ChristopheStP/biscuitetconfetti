@@ -31,7 +31,7 @@ class PaymentController extends AbstractController
         $products_for_stripe = [];
 
         foreach ($order->getOrderDetails() as $product) {
-
+            $illustration = $product->getProductIllustration();
             $products_for_stripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
